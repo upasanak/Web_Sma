@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}SMA{% endblock title%}
+
+{% block content %}
+    <div class="d-flex justify-content-xl-center">
+        <form method="POST" action="/upload_file" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Upload File Here</h2>
+            <div class="form-group">
+                <input type="file" class="form-control" name="smapy">
+            </div>
+        <!--<input type="file" name="csv_file">-->
+            <div class="form-group">
+                <label for="sma-days">SMA of how many days?</label>
+                <input type="text" name="nod" id="sma-days" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
+        </form>
+    </div>
+{% endblock content %}

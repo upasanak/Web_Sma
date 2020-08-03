@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title%} Result {% endblock title%}
+
+{% block scripts %}
+    <script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                    labels: [{% for i in cdate %} '{{i}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Closing Price',
+                        data: [{% for i in close %} '{{i}}', {% endfor %}],
+                        borderWidth: 1,
+                        lineTension: 0,
+                        borderColor: 'blue',
+                        fill: false
+                        },
+                        {
+                        label: 'SMA Forcast',
+                        data: [{% for i in sma %} '{{i}}', {% endfor %}],
+                        borderWidth: 1,
+                        lineTension: 0,
+                        borderColor: 'orange',
+                        fill: false,
+                        spanGaps: false
+                        }]
+                  }
+        });
+    });
+    </script>
+{% endblock scripts %}
+
+{% block content %}
+<div>
+    <canvas id="myChart" width="800" height="350"></canvas>
+</div>
+{% endblock content %}
